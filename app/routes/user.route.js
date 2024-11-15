@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user.controllers');
 
-router.get('/login', userController.index);
+router.get('/:id/block', userController.block);
 router.get('/', userController.index);
 
 
