@@ -5,6 +5,7 @@ const sildeRoute = require("./slide.route.js");
 const libraryRoute = require("./library.route.js");
 const authRoute = require("./auth.route.js");
 const authController = require("../controllers/auth.controller.js");
+const homeController = require("../controllers/home.controller.js");
 const { isAuthenticated, isAuthenticatedTrue } = require("../middelwares/auth.middelwares.js");
 
 function route(app){
@@ -18,6 +19,7 @@ function route(app){
     app.route("/password")
     .get(isAuthenticated, authController.password) 
     .post(isAuthenticated, authController.submitChangePassword); 
+    app.use("/", isAuthenticated, homeController.index);
 }
 
 module.exports = route
