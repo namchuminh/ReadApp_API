@@ -1,0 +1,79 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Danh Sách Chuyên Mục</h1>
+                </div>
+            </div>
+            <div class="card alert">
+                <div class="card-body">
+                    <!-- Hiển thị thông báo lỗi (nếu có) -->
+                    <% if (error) { %>
+                        <div class="alert alert-danger">
+                            <%= error %>
+                        </div>
+                        <% } %>
+                            <!-- Thanh tìm kiếm -->
+                            <form method="GET" action="/library" class="form-inline mb-5" style="margin-bottom: 15px;">
+                                <input type="text" name="search" class="form-control mr-2" placeholder="Tìm kiếm..."
+                                    value="<%= search %>" />
+                                <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                            </form>
+                            <!-- Bảng dữ liệu -->
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tài Khoản</th>
+                                            <th>Tên Sách</th>
+                                            <th>Thao Tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% if (libraries.length > 0) { %>
+                                            <% libraries.forEach((lib, index) => { %>
+                                                <tr>
+                                                  <td><%= index + 1 %></td>
+                                                  <td><%= lib.user.HoTen %> (<%= lib.user.TaiKhoan %>)</td>
+                                                  <td><%= lib.book.TenSach %> (Tác giả: <%= lib.book.TacGia %>)</td>
+                                                  <td>
+                                                    <a href="/library/<%= lib.MaThuVien %>" class="btn btn-success btn-sm">Cập Nhật</a>
+                                                    <form action="/library/<%= lib.MaThuVien %>/delete" method="GET"
+                                                        class="d-inline"
+                                                        onsubmit="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            Xóa
+                                                        </button>
+                                                    </form>
+                                                  </td>
+                                                </tr>
+                                            <% }) %>
+                                        <% } else { %>
+                                            <tr>
+                                                <td colspan="4" style="text-align: center;">
+                                                    Không có thư viện sách của người dùng nào trong danh sách!
+                                                </td>
+                                            </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Phân trang -->
+                            <nav>
+                                <ul class="pagination">
+                                    <% for (let i=1; i <=totalPages; i++) { %>
+                                        <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                                            <a class="page-link" href="?page=<%= i %>&search=<%= search %>">
+                                                <%= i %>
+                                            </a>
+                                        </li>
+                                        <% } %>
+                                </ul>
+                            </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

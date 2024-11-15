@@ -35,9 +35,9 @@
                 </thead>
                 <tbody>
                     <% if (users.length > 0) { %>
-                        <% users.forEach((user) => { %>
+                        <% users.forEach((user, index) => { %>
                         <tr>
-                            <td><%= user.MaNguoiDung %></td>
+                            <td><%= index + 1 %></td>
                             <td><%= user.TaiKhoan %></td>
                             <td><%= user.HoTen %></td>
                             <td><%= user.SoDienThoai %></td>

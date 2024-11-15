@@ -1,0 +1,57 @@
+<%- include('../layouts/header.ejs') %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-header">
+      <div class="page-title">
+        <h1>Chỉnh Sửa Thư Viện</h1>
+      </div>
+    </div>
+    <div class="card alert">
+      <div class="card-body">
+        <!-- Hiển thị thông báo lỗi (nếu có) -->
+        <% if (error) { %>
+          <div class="alert alert-danger">
+            <%= error %>
+          </div>
+        <% } %>
+
+        <!-- Form chỉnh sửa Library -->
+        <form action="/library/<%= library.MaThuVien %>" method="POST">
+          <div class="form-group">
+            <label for="MaNguoiDung">Người Dùng</label>
+            <select name="MaNguoiDung" id="MaNguoiDung" class="form-control" required>
+              <option value="">Chọn người dùng</option>
+              <% users.forEach(user => { %>
+                <option 
+                  value="<%= user.MaNguoiDung %>" 
+                  <%= user.MaNguoiDung === library.MaNguoiDung ? "selected" : "" %>>
+                  <%= user.HoTen %> (<%= user.TaiKhoan %>)
+                </option>
+              <% }); %>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="MaSach">Sách</label>
+            <select name="MaSach" id="MaSach" class="form-control" required>
+              <option value="">Chọn sách</option>
+              <% books.forEach(book => { %>
+                <option 
+                  value="<%= book.MaSach %>" 
+                  <%= book.MaSach === library.MaSach ? "selected" : "" %>>
+                  <%= book.TenSach %> (Tác giả: <%= book.TacGia %>)
+                </option>
+              <% }); %>
+            </select>
+          </div>
+
+          <div class="form-group d-flex justify-content-between">
+            <a href="/library" class="btn btn-primary">Quay Lại</a>
+            <button type="submit" class="btn btn-success">Lưu Thông Tin</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../layouts/footer.ejs') %>
