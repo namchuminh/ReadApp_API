@@ -1,0 +1,93 @@
+<%- include('../layouts/header.ejs') %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-header">
+      <div class="page-title">
+        <h1>Danh Sách Sách</h1>
+      </div>
+    </div>
+    <div class="card alert">
+      <div class="card-body">
+        <!-- Hiển thị thông báo lỗi (nếu có) -->
+        <% if (error) { %>
+          <div class="alert alert-danger">
+            <%= error %>
+          </div>
+        <% } %>
+        <!-- Thanh tìm kiếm -->
+        <form method="GET" action="/book" class="form-inline mb-5" style="margin-bottom: 15px;">
+          <input
+            type="text"
+            name="search"
+            class="form-control mr-2"
+            placeholder="Tìm kiếm sách..."
+            value="<%= search %>"
+          />
+          <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+        </form>
+        <!-- Bảng dữ liệu -->
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th style="width: 150px;">Hình Ảnh</th>
+                <th>Tên Sách</th>
+                <th>Tác Giả</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (books.length > 0) { %>
+                <% books.forEach((book, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td>
+                      <img
+                        src="<%= book.HinhAnh %>"
+                        style="width: 150px; height: 200px;"
+                        alt="Hình Ảnh Sách"
+                      />
+                    </td>
+                    <td><%= book.TenSach %></td>
+                    <td><%= book.TacGia %></td>
+                    <td>
+                      <a href="/book/<%= book.MaSach %>" class="btn btn-success btn-sm">Cập Nhật</a>
+                      <form
+                        action="/book/<%= book.MaSach %>/delete"
+                        method="GET"
+                        class="d-inline"
+                        onsubmit="return confirm('Bạn có chắc chắn muốn xóa không?')"
+                      >
+                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }); %>
+              <% } else { %>
+                <tr>
+                  <td colspan="5">
+                    <p style="text-align: center;">Không có sách nào trong danh sách!</p>
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+        <!-- Phân trang -->
+        <nav>
+          <ul class="pagination">
+            <% for (let i = 1; i <= totalPages; i++) { %>
+              <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                <a class="page-link" href="?page=<%= i %>&search=<%= search %>">
+                  <%= i %>
+                </a>
+              </li>
+            <% } %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../layouts/footer.ejs') %>

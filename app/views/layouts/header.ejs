@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Trang Quản Trị</title>
+
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+    <!-- Standard iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+    <!-- Standard iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+
+    <!-- Styles -->
+    <link href="/public/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="/public/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="/public/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="/public/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/css/lib/unix.css" rel="stylesheet">
+    <link href="/public/css/style.css" rel="stylesheet">
+    <script src="/public/js/lib/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+</head>
+
+<body>
+
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="nano">
+            <div class="nano-content">
+                <ul>
+                    <li class="label">Hệ Thống</li>
+                    <li class="active"><a href="/"><i class="ti-home"></i>Trang Chủ </a>
+                    </li>
+                    <li class="label">Cuốn Sách</li>
+
+                    <li><a class="sidebar-sub-toggle"><i class="ti-view-grid"></i>Chuyên Mục <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <ul>
+                            <li><a href="/category">Danh Sách</a></li>
+                            <li><a href="/category/add">Thêm Mới</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a class="sidebar-sub-toggle"><i class="ti-view-grid"></i>Cuốn Sách <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <ul>
+                            <li><a href="/book">Danh Sách</a></li>
+                            <li><a href="/book/add">Thêm Mới</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a class="sidebar-sub-toggle"><i class="ti-view-grid"></i>Trình Chiếu <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <ul>
+                            <li><a href="/slide">Danh Sách</a></li>
+                            <li><a href="/slide/add">Thêm Mới</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="label">Người Dùng</li>
+
+                    <li><a class="sidebar-sub-toggle"><i class="ti-view-grid"></i>Người Dùng <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <ul>
+                            <li><a href="/user">Danh Sách</a></li>
+                            <li><a href="/user/add">Thêm Mới</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a class="sidebar-sub-toggle"><i class="ti-view-grid"></i>Thư Viện <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <ul>
+                            <li><a href="/library">Danh Sách</a></li>
+                            <li><a href="/library/add">Thêm Mới</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="label">Cá Nhân</li>
+                    <li><a href="/password"><i class="ti-lock"></i> Đổi Mật Khẩu</a></li>
+                    <li><a href="/logout"><i class="ti-power-off"></i> Đăng Xuất</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /# sidebar -->
+
+    <div class="header">
+        <div class="pull-left">
+            <div class="logo"><a href="<?php echo base_url('admin/'); ?>"><span>Quản Trị Hệ Thống</span></a></div>
+            <div class="hamburger sidebar-toggle">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <!-- /# row -->
+                <div id="main-content">
+                    

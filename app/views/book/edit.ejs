@@ -1,0 +1,73 @@
+<%- include('../layouts/header.ejs') %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-header">
+      <div class="page-title">
+        <h1>Chỉnh Sửa Sách</h1>
+      </div>
+    </div>
+    <div class="card alert">
+      <div class="card-body">
+        <form action="/book/<%= book.MaSach %>" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="TenSach">Tên Sách</label>
+            <input
+              type="text"
+              name="TenSach"
+              id="TenSach"
+              class="form-control"
+              value="<%= book.TenSach %>"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="TacGia">Tác Giả</label>
+            <input
+              type="text"
+              name="TacGia"
+              id="TacGia"
+              class="form-control"
+              value="<%= book.TacGia %>"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="NamXuatBan">Năm Xuất Bản</label>
+            <input
+              type="number"
+              name="NamXuatBan"
+              id="NamXuatBan"
+              class="form-control"
+              value="<%= book.NamXuatBan %>"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="MaChuyenMuc">Chuyên Mục</label>
+            <select name="MaChuyenMuc" id="MaChuyenMuc" class="form-control">
+              <% categories.forEach(category => { %>
+                <option
+                  value="<%= category.MaChuyenMuc %>"
+                  <%= book.MaChuyenMuc === category.MaChuyenMuc ? 'selected' : '' %>
+                >
+                  <%= category.TenChuyenMuc %>
+                </option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="HinhAnh">Hình Ảnh</label>
+            <input type="file" name="HinhAnh" id="HinhAnh" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="TepTin">Tệp Tin PDF (<a href="/uploads/book/pdf/1731683046775.pdf" target="_blank" style="color: blueviolet; font-weight: bold;">Xem Sách</a>)</label>
+            <input type="file" name="TepTin" id="TepTin" class="form-control" />
+          </div>
+          <a href="/book" class="btn btn-primary">Quay Lại</a>
+          <button type="submit" class="btn btn-success">Lưu Thông Tin</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../layouts/footer.ejs') %>
