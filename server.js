@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const session = require('express-session');
 const methodOverride = require("method-override");
 
 // Connect to database
@@ -15,6 +16,14 @@ const sequelize = require('./app/config/db.config.js');
     console.error('Unable to connect to the database:', error);
   }
 })();
+
+// Cấu hình session
+app.use(session({
+  secret: 'your-secret-key', // Thay bằng chuỗi bí mật của bạn
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Sử dụng true nếu bạn có HTTPS
+}));
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/app/views');
