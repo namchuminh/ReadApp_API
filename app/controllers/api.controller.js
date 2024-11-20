@@ -293,6 +293,48 @@ class authController {
       return res.status(500).json({ message: "Đã xảy ra lỗi. Vui lòng thử lại." });
     }
   }
+
+  async getLibrary(req, res) {
+    const { id } = req.params;
+
+    try {
+      // Kiểm tra đầu vào
+      if (!id) {
+        return res.status(400).json({ message: "Vui lòng cung cấp mã người dùng." });
+      }
+
+      // Tìm tất cả sách trong thư viện của người dùng
+      const library = await Library.findAll({
+        where: { MaNguoiDung: id },
+        include: [
+          {
+            model: Book,
+            as: "book",
+            attributes: ["TenSach", "TacGia", "HinhAnh"], // Chỉ lấy các cột cần thiết
+          },
+        ],
+      });
+
+      // Nếu không có sách nào trong thư viện
+      if (library.length === 0) {
+        return res.status(200).json({ data: [] });
+      }
+
+      // Trả về danh sách sách
+      return res.status(200).json({
+        message: "Lấy thư viện thành công.",
+        data: library.map(entry => ({
+          TenSach: entry.book.TenSach,
+          TacGia: entry.book.TacGia,
+          HinhAnh: entry.book.HinhAnh,
+        })),
+      });
+    } catch (error) {
+      console.error("Lấy thư viện thất bại:", error);
+      return res.status(500).json({ message: "Đã xảy ra lỗi. Vui lòng thử lại." });
+    }
+  }
+
 }
 
 module.exports = new authController();

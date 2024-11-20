@@ -12,5 +12,6 @@ router.post("/login", apiController.login);
 router.post("/register", apiController.register);
 router.get("/profile/:id", apiController.profile);
 router.post("/library", apiController.addLibrary);
+router.get("/library/:id", apiController.getLibrary);
 
 module.exports = router;
