@@ -8,5 +8,9 @@ router.get("/categories", apiController.categories);
 router.get("/recommendBook", apiController.recommendBook);
 router.get("/topRead", apiController.topRead);
 router.get("/bookByCategory", apiController.bookByCategory);
+router.post("/login", apiController.login);
+router.post("/register", apiController.register);
+router.get("/profile/:id", apiController.profile);
+router.post("/library", apiController.addLibrary);
 
 module.exports = router;
