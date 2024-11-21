@@ -335,6 +335,31 @@ class authController {
     }
   }
 
+  async book(req, res) {
+    try {
+      const { id } = req.params;
+
+      if (!id) {
+        return res.status(400).json({ message: "Không tìm thấy sách" });
+      }
+
+      const book = await Book.findOne({
+        where: {
+          MaSach: id
+        },
+      });
+
+      if (!book) {
+        return res.status(401).json({ message: "Không tìm thấy sách" });
+      }
+
+      return res.json(book);
+    } catch (error) {
+      console.error("Lấy thông tin sách thất bại:", error);
+      return res.status(500).json({ message: "Đã xảy ra lỗi. Vui lòng thử lại." });
+    }
+  }
+
 }
 
 module.exports = new authController();

@@ -13,5 +13,7 @@ router.post("/register", apiController.register);
 router.get("/profile/:id", apiController.profile);
 router.post("/library", apiController.addLibrary);
 router.get("/library/:id", apiController.getLibrary);
+router.get("/books/:id", apiController.book);
+
 
 module.exports = router;
