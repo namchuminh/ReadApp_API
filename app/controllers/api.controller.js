@@ -310,7 +310,7 @@ class authController {
           {
             model: Book,
             as: "book",
-            attributes: ["TenSach", "TacGia", "HinhAnh"], // Chỉ lấy các cột cần thiết
+            attributes: ["MaSach", "TenSach", "TacGia", "HinhAnh"], // Chỉ lấy các cột cần thiết
           },
         ],
       });
@@ -324,6 +324,7 @@ class authController {
       return res.status(200).json({
         message: "Lấy thư viện thành công.",
         data: library.map(entry => ({
+          MaSach: entry.book.MaSach,
           TenSach: entry.book.TenSach,
           TacGia: entry.book.TacGia,
           HinhAnh: entry.book.HinhAnh,
